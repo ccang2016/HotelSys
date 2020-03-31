@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelSys.Bll;
 using HotelSys.Data;
+using HotelSys.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -32,9 +34,12 @@ namespace HotelSys
             string connString = Configuration.GetConnectionString("HotelContext");
             services.AddDbContext<HotelDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("HotelContext")));
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddSingleton
+            services.AddTransient<IRoomService, RoomService>();
+            services.AddTransient<IRoomTypeService, RoomTypeService>();
         }
-
-
 
         // ≈‰÷√÷–º‰º˛
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +63,7 @@ namespace HotelSys
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Room}/{action=Index}/{id?}");
             });
         }
     }

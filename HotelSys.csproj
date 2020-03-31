@@ -9,10 +9,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HotelSys.Bll\HotelSys.Bll.csproj" />
     <ProjectReference Include="..\HotelSys.Dal\HotelSys.Data.csproj" />
+    <ProjectReference Include="..\HotelSys.Depository\HotelSys.Repository.csproj" />
   </ItemGroup>
 
 
